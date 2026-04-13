@@ -27,6 +27,33 @@ from app.services.openai_service import OpenAIService, build_candidate_edges
 router = APIRouter()
 
 
+def _normalize_understanding(value: str, mastery_score: float) -> str:
+    if mastery_score >= 80:
+        score_based = "tushundi"
+    elif mastery_score >= 50:
+        score_based = "qisman"
+    else:
+        score_based = "tushunmadi"
+
+    normalized = (
+        (value or "")
+        .strip()
+        .lower()
+        .replace("’", "'")
+        .replace("‘", "'")
+        .replace("`", "'")
+    )
+    if normalized in {"tushundi", "qisman", "tushunmadi"}:
+        return normalized
+    if any(token in normalized for token in ["tushunmadi", "noto'g'ri", "notogri", "xato", "chalkash", "yetarli emas"]):
+        return "tushunmadi"
+    if any(token in normalized for token in ["qisman", "partial", "to'liq emas", "toliq emas"]):
+        return "qisman"
+    if any(token in normalized for token in ["tushundi", "aniq", "to'g'ri", "togri", "yetarli", "mustahkam"]):
+        return "tushundi"
+    return score_based
+
+
 def _get_student_lesson(db: Session, student: User, lesson_id: int) -> tuple[Lesson, Course, CourseModule]:
     lesson = db.get(Lesson, lesson_id)
     if not lesson:
@@ -119,11 +146,12 @@ def shogird_respond(payload: ShogirdTurnRequest, db: Session = Depends(get_db), 
     transcript = session.transcript_json or []
     transcript.append({"role": "user", "content": payload.student_message})
     result = ai.shogird_turn(lesson=lesson, transcript=transcript, student_message=payload.student_message)
+    understanding = _normalize_understanding(result.understanding, result.mastery_score)
     transcript.append({"role": "assistant", "content": result.ai_message})
     session.transcript_json = transcript
     session.result_json = {
         **(session.result_json or {}),
-        "understanding": result.understanding,
+        "understanding": understanding,
         "mastery_score": result.mastery_score,
         "weak_spots": result.weak_spots,
         "what_to_review": result.what_to_review,
@@ -141,13 +169,15 @@ def shogird_respond(payload: ShogirdTurnRequest, db: Session = Depends(get_db), 
             mastery_score=result.mastery_score,
             proof_summary={
                 "mode": "shogird",
-                "understanding": result.understanding,
+                "understanding": understanding,
                 "weak_spots": result.weak_spots,
                 "what_to_review": result.what_to_review,
             },
             add_seconds=300,
         )
-    return ShogirdTurnResponse(session_id=session.id, **result.model_dump())
+    payload = result.model_dump()
+    payload["understanding"] = understanding
+    return ShogirdTurnResponse(session_id=session.id, **payload)
 
 
 @router.post("/mri/start", response_model=MriStartResponse)

@@ -11,7 +11,7 @@ export function BrandMark({ compact = false, href = "/", subtitle }: Props) {
   const content = (
     <div className={`brand-mark${compact ? " compact" : ""}`}>
       <div className="brand-logo-wrap">
-        <Image src="/logo.png" alt="BilimAI logo" width={compact ? 42 : 72} height={compact ? 42 : 72} className="brand-logo" />
+        <Image src="/logo-brand-v2.png" alt="BilimAI logo" width={compact ? 42 : 72} height={compact ? 42 : 72} className="brand-logo" />
       </div>
       <div>
         <div className="brand-title">BilimAI</div>

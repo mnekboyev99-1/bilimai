@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "BilimAI",
   description: "Bilimni isbotlaydigan EdTech platforma",
   icons: {
-    icon: "/logo.png"
+    icon: "/logo-brand-v2.png"
   }
 };
 

@@ -6,6 +6,7 @@ import random
 from typing import Any
 
 from openai import OpenAI
+from openai.lib._pydantic import to_strict_json_schema
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
@@ -124,6 +125,7 @@ class OpenAIService:
         self.model = settings.openai_model
 
     def _schema_response(self, name: str, schema_model: type[BaseModel], messages: list[dict[str, Any]]) -> BaseModel:
+        strict_schema = to_strict_json_schema(schema_model)
         completion = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
@@ -132,7 +134,7 @@ class OpenAIService:
                 "json_schema": {
                     "name": name,
                     "strict": True,
-                    "schema": schema_model.model_json_schema(),
+                    "schema": strict_schema,
                 },
             },
             temperature=0.2,

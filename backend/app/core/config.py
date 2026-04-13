@@ -1,5 +1,5 @@
+import re
 from functools import lru_cache
-from pathlib import Path
 
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -30,6 +30,13 @@ class Settings(BaseSettings):
     @property
     def cors_origins_list(self) -> list[str]:
         return [item.strip() for item in self.cors_origins.split(",") if item.strip()]
+
+    def is_allowed_origin(self, origin: str | None) -> bool:
+        if not origin:
+            return False
+        if origin in self.cors_origins_list:
+            return True
+        return bool(re.match(self.cors_origin_regex, origin))
 
     @property
     def is_sqlite(self) -> bool:

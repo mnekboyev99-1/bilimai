@@ -3,7 +3,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "BilimAI",
-  description: "Bilimni isbotlaydigan EdTech SaaS"
+  description: "Bilimni isbotlaydigan EdTech platforma",
+  icons: {
+    icon: "/logo.png"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

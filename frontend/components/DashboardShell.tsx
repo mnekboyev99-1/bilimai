@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { PropsWithChildren } from "react";
 
+import { BrandMark } from "@/components/BrandMark";
 import { clearSession } from "@/services/auth";
 import { SessionUser } from "@/types";
 
@@ -35,11 +36,7 @@ export function DashboardShell({ user, title, subtitle, children }: Props) {
     <div className="shell">
       <aside className="sidebar">
         <div className="brand">
-          <div className="logo-box" />
-          <div>
-            <div>BilimAI</div>
-            <div className="muted" style={{ fontSize: 13 }}>Bilimni isbotlaydigan mahsulot</div>
-          </div>
+          <BrandMark compact subtitle="Bilimni isbotlaydigan platforma" />
         </div>
         <nav>
           {links.map((link) => (

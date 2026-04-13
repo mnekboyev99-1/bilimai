@@ -16,6 +16,9 @@ class Settings(BaseSettings):
     openai_api_key: str = ""
     openai_model: str = "gpt-5.4-mini"
     cors_origins: str = Field(default="http://localhost:3000,http://127.0.0.1:3000")
+    cors_origin_regex: str = Field(
+        default=r"^https?://(localhost|127\.0\.0\.1|0\.0\.0\.0|192\.168\.\d{1,3}\.\d{1,3}|10\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3})(:\d+)?$"
+    )
 
     model_config = SettingsConfigDict(
         env_file=(".env",),

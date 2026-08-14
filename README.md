@@ -5,48 +5,46 @@
 </p>
 
 <p align="center">
-  <strong>Bilim yetkazmaydi — Tushunganingizni isbotlatadi</strong><br/>
+  <strong>More than content delivery — We prove real understanding</strong><br/>
   AI-powered verifiable learning platform
 </p>
 
 <p align="center">
-  <a href="https://bilim-ai.uz"><img src="https://img.shields.io/badge/🌐_Demo_Sayt-bilim--ai.uz-4f8ef7?style=for-the-badge" alt="Demo"/></a>
+  <a href="https://bilim-ai.uz"><img src="https://img.shields.io/badge/🌐_Demo_Site-bilim--ai.uz-4f8ef7?style=for-the-badge" alt="Demo"/></a>
   <img src="https://img.shields.io/badge/Stack-FastAPI_+_Next.js-7c3aed?style=for-the-badge" alt="Stack"/>
   <img src="https://img.shields.io/badge/AI-Gemini_2.0_Flash-10b981?style=for-the-badge" alt="AI"/>
 </p>
 
 ---
 
-## 🌐 Demo Sayt
+## 🌐 Demo Site
 
 **[https://bilim-ai.uz](https://bilim-ai.uz)**
 
-### Demo Hisoblar
+### Demo Accounts
 
-| Rol | Email | Parol |
-|-----|-------|-------|
-| 👨‍🏫 O'qituvchi | `teacher@bilimai.local` | `password123` |
-| 🎓 Talaba | `student@bilimai.local` | `password123` |
-| 👨‍👩‍👦 Ota-ona | `parent@bilimai.local` | `password123` |
+| Role | Email | Password |
+|------|-------|----------|
+| 👨‍🏫 Teacher | `teacher@bilimai.local` | `password123` |
+| 🎓 Student | `student@bilimai.local` | `password123` |
+| 👨‍👩‍👦 Parent | `parent@bilimai.local` | `password123` |
 
-> Demo saytda AI funksiyalari to'liq ishlaydi. Gemini 2.0 Flash modeli ishlatilgan.
+> Full AI functionality is available on the demo site, powered by Gemini 2.0 Flash.
 
 ---
 
-## 🎯 Loyiha Haqida
+## 🎯 About the Project
 
-BilimAI — talabaning haqiqatan tushunganini isbotlashga asoslangan EdTech platformasi.
+BilimAI is an EdTech SaaS platform designed to answer one critical question: **Did the student truly understand the topic, or merely complete the lesson?**
 
-**Asosiy muammo:** Talaba darsni tugatdi, lekin aslida tushundimi?
+**Key Features:**
 
-**BilimAI yechimi:**
-
-| Xususiyat | Tavsif |
-|-----------|--------|
-| 🤖 **AI Kurs Generatsiyasi** | Prompt yoki fayl (PDF/DOCX) asosida Gemini AI kurs yaratadi |
-| 🎓 **SHOGIRD AI** | Talaba AI "o'quvchisini" o'qitadi — yuzaki javob ajratiladi |
-| 🧠 **Bilim MRI** | Concept graph orqali ichki tushuncha tuzilmasi tekshiriladi |
-| 📊 **Analytics** | O'qituvchi va ota-ona uchun real-time progress ko'rsatkichlari |
+| Feature | Description |
+|---------|-------------|
+| 🤖 **AI Course Generation** | Generates full courses via Gemini AI using prompts, PDFs, or DOCX files |
+| 🎓 **SHOGIRD AI** | The student "teaches" an AI persona — uncovering superficial knowledge |
+| 🧠 **Bilim MRI** | Evaluates internal knowledge structures via conceptual graphs |
+| 📊 **Analytics** | Real-time dashboards for teachers and parents |
 
 ---
 
@@ -54,9 +52,9 @@ BilimAI — talabaning haqiqatan tushunganini isbotlashga asoslangan EdTech plat
 
 ### Backend
 - **FastAPI** + SQLAlchemy + SQLite
-- **JWT** autentifikatsiya
+- **JWT** Authentication
 - **Gemini API** (OpenAI-compatible endpoint)
-- PDF, DOCX, PPTX, TXT fayl parsing
+- PDF, DOCX, PPTX, TXT file parsing
 
 ### Frontend
 - **Next.js 16** App Router + TypeScript
@@ -68,32 +66,32 @@ BilimAI — talabaning haqiqatan tushunganini isbotlashga asoslangan EdTech plat
 
 ---
 
-## 🚀 Ishga Tushirish
+## 🚀 Quick Start
 
-### Docker bilan (tavsiya)
+### With Docker (Recommended)
 
 ```bash
 git clone https://github.com/mnekboyev99-1/bilimai
 cd bilimai
 
-# 1. Backend .env yarating
+# 1. Setup Backend Environment
 cp backend/.env.example backend/.env
-# OPENAI_API_KEY ga Gemini API kalitingizni kiriting
+# Set your OPENAI_API_KEY to your Gemini API key
 
-# 2. Frontend .env yarating
+# 2. Setup Frontend Environment
 cp frontend/.env.example frontend/.env.local
 
-# 3. Ishga tushiring
+# 3. Launch
 docker compose up --build
 ```
 
-| URL | Tavsif |
-|-----|--------|
+| URL | Description |
+|-----|-------------|
 | `http://localhost:3000` | Frontend |
 | `http://localhost:8000` | Backend API |
 | `http://localhost:8000/docs` | Swagger UI |
 
-### Lokal (Docker siz)
+### Local (Without Docker)
 
 **Backend:**
 ```bash
@@ -114,24 +112,24 @@ npm run dev
 
 ---
 
-## ⚙️ Konfiguratsiya
+## ⚙️ Configuration
 
-### Gemini API (tavsiya etiladi)
+### Gemini API (Required for AI Features)
 
 ```env
-OPENAI_API_KEY=YOUR_GEMINI_API_KEY    # aistudio.google.com dan oling
+OPENAI_API_KEY=YOUR_GEMINI_API_KEY    # Get from aistudio.google.com
 OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
 OPENAI_MODEL=gemini-2.0-flash
 ```
 
-### CORS (production uchun)
+### CORS (For Production)
 ```env
 CORS_ORIGINS=https://bilim-ai.uz,https://www.bilim-ai.uz
 ```
 
 ---
 
-## 📁 Loyiha Tuzilishi
+## 📁 Project Structure
 
 ```
 bilimai/
@@ -144,16 +142,16 @@ bilimai/
 │   │   └── services/    # AI, analytics, courses
 │   └── requirements.txt
 ├── frontend/
-│   ├── app/             # Next.js App Router sahifalari
-│   │   ├── teacher/     # O'qituvchi paneli
-│   │   ├── student/     # Talaba paneli
-│   │   └── parent/      # Ota-ona paneli
-│   ├── components/      # UI komponentlar
+│   ├── app/             # Next.js App Router pages
+│   │   ├── teacher/     # Teacher dashboard
+│   │   ├── student/     # Student dashboard
+│   │   └── parent/      # Parent dashboard
+│   ├── components/      # UI components
 │   ├── features/        # Auth, business logic
 │   └── services/        # API client
-├── nginx/               # Nginx konfiguratsiya
+├── nginx/               # Nginx configuration
 ├── docker-compose.yml
-└── deploy.sh            # Production deploy skripti
+└── deploy.sh            # Production deploy script
 ```
 
 ---
@@ -161,17 +159,17 @@ bilimai/
 ## 🗺️ Roadmap
 
 - [ ] PostgreSQL + Alembic migrations
-- [ ] Fayl storage (S3-compatible)
-- [ ] Background workers (Celery)
-- [ ] Multi-tenant tashkilotlar
+- [ ] S3-compatible File Storage
+- [ ] Celery Background workers
+- [ ] Multi-tenant organizations
 - [ ] Mobile app (React Native)
-- [ ] Audit logging va observability
+- [ ] Audit logging and observability
 
 ---
 
-## 📄 Litsenziya
+## 📄 License
 
-Ushbu loyiha shaxsiy va ichki foydalanish uchun mo'ljallangan.
+This project is intended for personal and internal use.
 
 ---
 

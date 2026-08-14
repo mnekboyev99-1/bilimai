@@ -1,180 +1,181 @@
 # BilimAI
 
 <p align="center">
-  <img src="./docs/assets/logo.png" alt="BilimAI logo" width="260" />
+  <img src="./docs/assets/logo.png" alt="BilimAI logo" width="180" />
 </p>
 
 <p align="center">
-  AI-powered learning platform focused on proving real understanding, not just content completion.
+  <strong>Bilim yetkazmaydi — Tushunganingizni isbotlatadi</strong><br/>
+  AI-powered verifiable learning platform
 </p>
 
-## Overview
+<p align="center">
+  <a href="https://bilim-ai.uz"><img src="https://img.shields.io/badge/🌐_Demo_Sayt-bilim--ai.uz-4f8ef7?style=for-the-badge" alt="Demo"/></a>
+  <img src="https://img.shields.io/badge/Stack-FastAPI_+_Next.js-7c3aed?style=for-the-badge" alt="Stack"/>
+  <img src="https://img.shields.io/badge/AI-Gemini_2.0_Flash-10b981?style=for-the-badge" alt="AI"/>
+</p>
 
-BilimAI is an EdTech SaaS product built around the idea of verifiable learning.
-The platform helps teachers create courses from prompts or source materials, then evaluates whether students truly understand the topic through interactive AI-based proof flows.
+---
 
-Core ideas:
+## 🌐 Demo Sayt
 
-- `SHOGIRD AI`: the student teaches an AI learner to demonstrate understanding.
-- `Bilim MRI`: the student reveals conceptual understanding through structured knowledge mapping.
-- `Teacher Workspace`: course creation, lesson generation, structure editing, and analytics.
-- `Parent View`: progress visibility and learning recommendations.
+**[https://bilim-ai.uz](https://bilim-ai.uz)**
 
-## Product Goals
+### Demo Hisoblar
 
-BilimAI is designed to answer a harder question than typical LMS platforms:
+| Rol | Email | Parol |
+|-----|-------|-------|
+| 👨‍🏫 O'qituvchi | `teacher@bilimai.local` | `password123` |
+| 🎓 Talaba | `student@bilimai.local` | `password123` |
+| 👨‍👩‍👦 Ota-ona | `parent@bilimai.local` | `password123` |
 
-> Did the student actually understand the topic, or only finish the lesson?
+> Demo saytda AI funksiyalari to'liq ishlaydi. Gemini 2.0 Flash modeli ishlatilgan.
 
-The current project includes:
+---
 
-- course creation and lesson structure management
-- role-based flows for teacher, student, and parent
-- AI-generated learning content
-- proof-of-understanding workflows
-- learning analytics endpoints
+## 🎯 Loyiha Haqida
 
-## Tech Stack
+BilimAI — talabaning haqiqatan tushunganini isbotlashga asoslangan EdTech platformasi.
+
+**Asosiy muammo:** Talaba darsni tugatdi, lekin aslida tushundimi?
+
+**BilimAI yechimi:**
+
+| Xususiyat | Tavsif |
+|-----------|--------|
+| 🤖 **AI Kurs Generatsiyasi** | Prompt yoki fayl (PDF/DOCX) asosida Gemini AI kurs yaratadi |
+| 🎓 **SHOGIRD AI** | Talaba AI "o'quvchisini" o'qitadi — yuzaki javob ajratiladi |
+| 🧠 **Bilim MRI** | Concept graph orqali ichki tushuncha tuzilmasi tekshiriladi |
+| 📊 **Analytics** | O'qituvchi va ota-ona uchun real-time progress ko'rsatkichlari |
+
+---
+
+## 🛠️ Tech Stack
 
 ### Backend
-
-- FastAPI
-- SQLAlchemy
-- SQLite
-- JWT authentication
-- OpenAI API
-- document parsing for `pdf`, `docx`, `pptx`, `txt`, and `md`
+- **FastAPI** + SQLAlchemy + SQLite
+- **JWT** autentifikatsiya
+- **Gemini API** (OpenAI-compatible endpoint)
+- PDF, DOCX, PPTX, TXT fayl parsing
 
 ### Frontend
+- **Next.js 16** App Router + TypeScript
+- React 19
 
-- Next.js App Router
-- React
-- TypeScript
-
-### Dev Environment
-
+### DevOps
 - Docker Compose
-- hot reload for backend and frontend in development
+- Nginx reverse proxy
 
-## Project Structure
+---
 
-```text
-backend/
-  app/
-    api/
-    core/
-    models/
-    schemas/
-    services/
-frontend/
-  app/
-  components/
-  features/
-  services/
-docs/
-  ARCHITECTURE.md
-  assets/
-```
+## 🚀 Ishga Tushirish
 
-## Quick Start With Docker
-
-### 1. Configure environment files
-
-Backend:
-
-```env
-OPENAI_API_KEY=your_openai_api_key
-OPENAI_MODEL=gpt-5.4-mini
-JWT_SECRET_KEY=super_secret_key
-```
-
-Frontend:
-
-```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1
-```
-
-If needed:
+### Docker bilan (tavsiya)
 
 ```bash
+git clone https://github.com/mnekboyev99-1/bilimai
+cd bilimai
+
+# 1. Backend .env yarating
 cp backend/.env.example backend/.env
+# OPENAI_API_KEY ga Gemini API kalitingizni kiriting
+
+# 2. Frontend .env yarating
 cp frontend/.env.example frontend/.env.local
-```
 
-### 2. Run the app
-
-```bash
+# 3. Ishga tushiring
 docker compose up --build
 ```
 
-### 3. Open the app
+| URL | Tavsif |
+|-----|--------|
+| `http://localhost:3000` | Frontend |
+| `http://localhost:8000` | Backend API |
+| `http://localhost:8000/docs` | Swagger UI |
 
-- Frontend: `http://localhost:3000`
-- Backend API: `http://localhost:8000`
-- Swagger docs: `http://localhost:8000/docs`
+### Lokal (Docker siz)
 
-## Local Development
-
-### Backend
-
+**Backend:**
 ```bash
 cd backend
-python -m venv .venv
-source .venv/bin/activate
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
 uvicorn app.main:app --reload
 ```
 
-Windows activation:
-
-```powershell
-.venv\Scripts\activate
-```
-
-### Frontend
-
+**Frontend:**
 ```bash
 cd frontend
-cp .env.example .env.local
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
-## Demo Accounts
+---
 
-The backend seeds demo users on first startup:
+## ⚙️ Konfiguratsiya
 
-- Teacher: `teacher@bilimai.local` / `password123`
-- Student: `student@bilimai.local` / `password123`
-- Parent: `parent@bilimai.local` / `password123`
+### Gemini API (tavsiya etiladi)
 
-## Environment Notes
+```env
+OPENAI_API_KEY=YOUR_GEMINI_API_KEY    # aistudio.google.com dan oling
+OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
+OPENAI_MODEL=gemini-2.0-flash
+```
 
-- `OPENAI_API_KEY` is required for AI-powered endpoints.
-- Without a valid key, AI-related features will return errors.
-- Development CORS is configured for common local hosts and LAN IP addresses.
+### CORS (production uchun)
+```env
+CORS_ORIGINS=https://bilim-ai.uz,https://www.bilim-ai.uz
+```
 
-## Current Limitations
+---
 
-- SQLite is used for local development
-- file storage is local-only
-- background jobs are not separated yet
-- production deployment hardening is still pending
+## 📁 Loyiha Tuzilishi
 
-## Roadmap
+```
+bilimai/
+├── backend/
+│   ├── app/
+│   │   ├── api/         # API endpoints
+│   │   ├── core/        # config, auth, db
+│   │   ├── models/      # SQLAlchemy models
+│   │   ├── schemas/     # Pydantic schemas
+│   │   └── services/    # AI, analytics, courses
+│   └── requirements.txt
+├── frontend/
+│   ├── app/             # Next.js App Router sahifalari
+│   │   ├── teacher/     # O'qituvchi paneli
+│   │   ├── student/     # Talaba paneli
+│   │   └── parent/      # Ota-ona paneli
+│   ├── components/      # UI komponentlar
+│   ├── features/        # Auth, business logic
+│   └── services/        # API client
+├── nginx/               # Nginx konfiguratsiya
+├── docker-compose.yml
+└── deploy.sh            # Production deploy skripti
+```
 
-- PostgreSQL + Alembic
-- object storage for uploaded files
-- background workers
-- audit logging
-- multi-tenant organizations and billing
-- production observability
+---
 
-## Documentation
+## 🗺️ Roadmap
 
-- Architecture notes: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
+- [ ] PostgreSQL + Alembic migrations
+- [ ] Fayl storage (S3-compatible)
+- [ ] Background workers (Celery)
+- [ ] Multi-tenant tashkilotlar
+- [ ] Mobile app (React Native)
+- [ ] Audit logging va observability
 
-## License
+---
 
-This repository is currently provided for internal or private project use unless a separate license is added.
+## 📄 Litsenziya
+
+Ushbu loyiha shaxsiy va ichki foydalanish uchun mo'ljallangan.
+
+---
+
+<p align="center">
+  <a href="https://bilim-ai.uz">bilim-ai.uz</a> · 
+  Made with ❤️ in Uzbekistan
+</p>

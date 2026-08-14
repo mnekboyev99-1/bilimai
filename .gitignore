@@ -12,3 +12,6 @@ node_modules/
 *.tsbuildinfo
 backend-data/
 nginx/ssl/
+upload/
+bilim-ai-frontend.zip
+frontend/out/

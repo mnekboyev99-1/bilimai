@@ -30,6 +30,9 @@
       ],
       "@/types/*": [
         "types/*"
+      ],
+      "@/types": [
+        "types/index.ts"
       ]
     },
     "plugins": [

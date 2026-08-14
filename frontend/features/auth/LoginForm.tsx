@@ -20,7 +20,7 @@ export function LoginForm() {
     setBusy(true);
     setError("");
     try {
-      const data = await apiPost<SessionData & { token_type: string }>("/auth/login", { email, password });
+      const data = await apiPost<{ access_token: string; token_type: string; user: SessionData["user"] }>("/auth/login", { email, password });
       saveSession({ token: data.access_token, user: data.user });
       router.replace(roleHome(data.user.role));
     } catch (err) {

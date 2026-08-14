@@ -121,7 +121,10 @@ class OpenAIService:
     def __init__(self) -> None:
         if not settings.openai_api_key:
             raise AppError("OPENAI_API_KEY topilmadi. Backend .env faylini to‘ldiring.", status_code=500)
-        self.client = OpenAI(api_key=settings.openai_api_key)
+        self.client = OpenAI(
+            api_key=settings.openai_api_key,
+            base_url=settings.openai_base_url,
+        )
         self.model = settings.openai_model
 
     def _schema_response(self, name: str, schema_model: type[BaseModel], messages: list[dict[str, Any]]) -> BaseModel:

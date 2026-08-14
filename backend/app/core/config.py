@@ -14,7 +14,8 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 1440
     openai_api_key: str = ""
-    openai_model: str = "gpt-5.4-mini"
+    openai_base_url: str = "https://generativelanguage.googleapis.com/v1beta/openai/"
+    openai_model: str = "gemini-2.0-flash"
     cors_origins: str = Field(default="http://localhost:3000,http://127.0.0.1:3000")
     cors_origin_regex: str = Field(
         default=r"^https?://(localhost|127\.0\.0\.1|0\.0\.0\.0|192\.168\.\d{1,3}\.\d{1,3}|10\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3})(:\d+)?$"
